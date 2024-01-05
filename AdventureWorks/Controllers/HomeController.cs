@@ -25,6 +25,7 @@ namespace AdventureWorks.Controllers
 
         public IActionResult Index(string sortOrder, string searchString, int? pageNumber, int pageSize = 4)
         {
+            //added comment for git push testing
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = string.IsNullOrEmpty(sortOrder) ? "idSortDesc" : "";
             ViewData["NameSortParm"] = sortOrder == "Name" ? "nameSortDesc" : "Name";
