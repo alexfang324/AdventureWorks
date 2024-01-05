@@ -15,6 +15,8 @@ builder.Services.AddDbContext<AdventureWorksContext>(options =>
     options.UseSqlite(sqLiteConnection));
 
 builder.Services.AddScoped<IRepository<ProductVM>, ProductRepository>();
+builder.Services.AddScoped<IRepository<ProductCategoryVM>, ProductCategoryRepository>();
+
 
 var app = builder.Build();
 

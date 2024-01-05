@@ -1,18 +1,19 @@
-﻿@model PaginatedList<AdventureWorks.ViewModels.ProductVM>
+﻿@model PaginatedList<AdventureWorks.ViewModels.ProductCategoryVM>
 
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Categories";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Products</h1>
-<form asp-action="Index" method="get">
+<h1>Categories</h1>
+
+<form asp-action="CategoryIndex" method="get">
     <div class="form-actions no-color">
         <p>
             <div class="form-group" style="display: inline-block">
-                <span>Search on Product Name, or Number:</span>
+                <span>Search on Product Name, Product Number or Category Name:</span>
                 <input type="text" name="SearchString"
-                        value="@ViewData["currentFilter"]" required />
+                       value="@ViewData["currentFilter"]" required />
             </div>
             <div class="form-group" style="display: inline-block">
                 <input type="submit" value="Search"
@@ -27,23 +28,19 @@
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Product ID", "Index", new { sortOrder = ViewBag.IDSortParm })
+                @Html.ActionLink("Product ID", "CategoryIndex", new { sortOrder = ViewBag.IDSortParm })
             </th>
             <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+               Product Name
             </th>
             <th>
-                @Html.ActionLink("Product Number", "Index", new { sortOrder = ViewBag.NumSortParm })
-            </th>
-
-            <th>
-                Color
+                @Html.ActionLink("Product Number", "CategoryIndex", new { sortOrder = ViewBag.NumSortParm })
             </th>
             <th>
-                Standard Cost
+                Product Color
             </th>
             <th>
-                List Price
+                @Html.ActionLink("Category Name", "CategoryIndex", new { sortOrder = ViewBag.CatSortParm })
             </th>
             <th></th>
         </tr>
@@ -55,19 +52,16 @@
                 @Html.DisplayFor(modelItem => item.ProductId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Color)
+                @Html.DisplayFor(modelItem => item.ProductColor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StandardCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ListPrice)
+                @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
         </tr>
 }
@@ -77,16 +71,15 @@
     <ul class="pagination">
         <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
             <a class="page-link"
-               href="@Url.Action("Index", new { pageNumber = Model.PageIndex - 1 })">
+               href="@Url.Action("CategoryIndex", new { pageNumber = Model.PageIndex - 1 })">
                 Previous
             </a>
         </li>
         <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
             <a class="page-link"
-               href="@Url.Action("Index", new { pageNumber = Model.PageIndex + 1 })">
+               href="@Url.Action("CategoryIndex", new { pageNumber = Model.PageIndex + 1 })">
                 Next
             </a>
         </li>
     </ul>
 </nav>
-
